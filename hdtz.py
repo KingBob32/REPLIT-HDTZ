@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 import re
 import html
 from threading import Lock
+from dotenv import load_dotenv
 
 # --- Flask Fake Server ---
 from flask import Flask
@@ -30,6 +31,11 @@ def keep_alive():
     t.start()
 
 keep_alive()  # inicia o servidor Flask
+
+load_dotenv()
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+bot.run(TOKEN)
 # Configuração do banco de dados
 criando_ticket = set()
 def init_database():
